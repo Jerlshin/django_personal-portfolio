@@ -1,0 +1,12 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<h1>{{ blog.title }}</h1>
+<!--It will show the corresponding blog in the web, 
+but, when in appopriate number is entered, it will show error-->
+{{blog.description | safe}}
+<!-- this is were we want to add HTML views-->
+<h2>--{{ blog.date | date:'F jS Y' }} --</h2>
+
+{% endblock %}

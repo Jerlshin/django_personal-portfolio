@@ -1,0 +1,37 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<!--above is for the template-->
+
+
+<h1>Hello Blog </h1>
+
+<!--To show the no of blogs i created-->
+<h2> Nick has written {{ blogs.count }}  blog{{ blogs.count | pluralize}}  </h2>
+<!--what if, i have only one blog, topluralize, we add that stuff over there-->
+{% for blog in blogs %}
+
+<!--we also have to pass blog number, blog_id
+    after adding, app_name in the urls.py, it wont work
+so, make it blog:details-->
+<a href = "{% url 'blog:details' blog.id %}"><h2>{{blog.title}}</h2></a>
+<!--<a> tag is for hyper link
+    To make the blog likable, we wrap with <a> tag-->
+<br>
+<h5>{{blog.date |date:'D M Y' }}</h5>
+<br>
+
+<!--If a i have many lines in the description, i can show hte first few lines, and then make a click and read the article-->
+<p>{{blog.description |safe| truncatechars:100}}</p>
+
+<!--show only 100 chars
+we add 'safe' feild because to make HTML work in the description while we do it in the admin/-->
+
+<!--<p>{{blog.description |striptags| truncatechars:100}}</p>-->
+<!--for being safe and for not using HTML-->
+
+
+
+{% endfor %}
+
+{% endblock %}

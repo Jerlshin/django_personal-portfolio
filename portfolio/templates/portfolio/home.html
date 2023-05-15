@@ -1,0 +1,38 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+
+<h1>Portfolio</h1>
+
+{% load static %}
+
+<!--adding link to all_blogs.html -->
+<!--TRICKY MAN, DO IT CAREFULL
+    calling a page from another directory, -->
+<a href = "{% url 'blog:all_blogs' %}"> Blog </a>
+<br>
+
+<a href = "{% static 'portfolio/resume.pdf' %}" %> Resume </a>
+
+<img src = "{% static 'portfolio/images2.jpg' %}" >
+
+
+{% for projects in projects%}
+
+<h2>{{projects.title}}</h2>
+<p>{{projects.description}}</p>
+
+<img src="{{projects.image.url}}" />
+
+{% if projects.url %}
+<br />
+<a href="{{projects.url}}"> Link </a>
+{% endif %}
+
+<!--If the project.url exit, then display the a tag, else skip
+similar to the if loop -->
+
+{% endfor %}
+
+{% endblock %}
